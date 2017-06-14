@@ -33,7 +33,7 @@ declare module "react-native-firebase" {
      */
     crash(): RNFirebase.crash.Crash;
     perf(): RNFirebase.perf.RNperf;
-    admob(): any;
+    admob(): RNFirebase.admob.RNadmob;
     config(): RNFirebase.config.RNconfig;
     apps: Array<string>;
     googleApiAvailability: RNFirebase.GoogleApiAvailabilityType;
@@ -120,6 +120,15 @@ declare module "react-native-firebase" {
        * The secret iOS API key used for authenticating requests from our app
        */
       APIKey?: string
+    }
+
+    namespace admob {
+      interface RNadmob {
+          initialize(appId: string): any;
+          interstitial(adUnit: string): any;
+          rewarded(adUnit: string);
+          static statics: any;
+      }
     }
 
     namespace perf {
