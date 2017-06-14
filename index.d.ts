@@ -32,6 +32,9 @@ declare module "react-native-firebase" {
      * such as a pre-caught exception this is possible by using the report method.
      */
     crash(): RNFirebase.crash.Crash;
+    perf(): RNFirebase.perf.RNperf;
+    admob(): any;
+    config(): any;
     apps: Array<string>;
     googleApiAvailability: RNFirebase.GoogleApiAvailabilityType;
     static initializeApp(options?: any | RNFirebase.configurationOptions, name?: string): FireBase;
@@ -117,6 +120,29 @@ declare module "react-native-firebase" {
        * The secret iOS API key used for authenticating requests from our app
        */
       APIKey?: string
+    }
+
+    namespace perf {
+      interface RNperf {
+        /**
+         *  Globally enable or disable performance monitoring
+         * @param enabled
+         * @returns {*}
+         */
+        setPerformanceCollectionEnabled(enabled: boolean): any;
+        /**
+          * Returns a new trace instance
+          * @param trace
+          */
+        newTrace(trace: string): Trace;
+        [key: string]: any;
+      }
+
+      interface Trace {
+        start()
+        stop()
+        incrementCounter(event: string)
+      }
     }
 
     namespace storage {
